@@ -44,4 +44,6 @@ dist/       自動產生的可發布網站
 docs/       規劃、盤點與審查文件
 ```
 
-GitHub 儲存庫為 [jack926509/Korean-trip](https://github.com/jack926509/Korean-trip)。本專案沒有自動部署流程；GitHub Actions 只執行資料、測試與建置檢查。
+GitHub 儲存庫為 [jack926509/Korean-trip](https://github.com/jack926509/Korean-trip)。Cloudflare Pages 專案 `korean-trip` 已連接此儲存庫的 `main` 分支；每次推送至 `main` 會自動執行 `npm run check`，成功後發布 `dist/`。
+
+正式網站網址為 [https://korean.xiehnet.com](https://korean.xiehnet.com)，目前狀態為「已部署，正式站瀏覽器驗收通過」。首次部署、HTTPS、六頁及手機互動已由 Astra 驗收通過。驗收條件與實證見 [Cloudflare 部署計畫](docs/cloudflare-deployment.md)。
