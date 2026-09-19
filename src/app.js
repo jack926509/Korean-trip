@@ -1,34 +1,5 @@
-export function matchesFilter(card, filter = '') {
-  return !filter || card.filters.includes(filter);
-}
-
-function setupFilters() {
-  for (const scope of document.querySelectorAll('[data-filter-scope]')) {
-    const select = scope.querySelector('[data-filter]');
-    const cards = [...scope.querySelectorAll('[data-card]')];
-    const empty = scope.querySelector('[data-empty]');
-    const count = scope.querySelector('[data-result-count]');
-    const apply = () => {
-      let shown = 0;
-      for (const card of cards) {
-        const visible = matchesFilter(
-          { filters: (card.dataset.filters || '').split('|') },
-          select?.value || ''
-        );
-        card.hidden = !visible;
-        if (visible) shown += 1;
-      }
-      if (empty) empty.hidden = shown !== 0;
-      if (count) count.textContent = `顯示 ${shown} 筆`;
-    };
-    select?.addEventListener('change', apply);
-    for (const clear of scope.querySelectorAll('[data-clear]')) clear.addEventListener('click', () => {
-        if (select) select.value = '';
-        apply();
-        select?.focus();
-    });
-    apply();
-  }
+export function resolveDayId(ids, requestedId) {
+  return ids.includes(requestedId) ? requestedId : ids[0];
 }
 
 function setupDays() {
@@ -36,7 +7,7 @@ function setupDays() {
   const panels = [...document.querySelectorAll('[data-day-panel]')];
   if (!tabs.length) return;
   const activate = (id) => {
-    if (!tabs.some((tab) => tab.dataset.dayTab === id)) id = tabs[0].dataset.dayTab;
+    id = resolveDayId(tabs.map((tab) => tab.dataset.dayTab), id);
     for (const tab of tabs) {
       const active = tab.dataset.dayTab === id;
       tab.setAttribute('aria-selected', String(active));
@@ -59,6 +30,5 @@ function setupDays() {
 }
 
 if (typeof document !== 'undefined') {
-  setupFilters();
   setupDays();
 }

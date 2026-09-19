@@ -25,12 +25,16 @@ test('輸出完整的行程、餐廳與購物空狀態', async () => {
   const food = await readFile(join(outputDir, 'food/index.html'), 'utf8');
   const shopping = await readFile(join(outputDir, 'shopping/index.html'), 'utf8');
   assert.equal((itinerary.match(/data-day-tab/g) || []).length, 7);
-  assert.ok((food.match(/data-card="food"/g) || []).length >= 17);
+  assert.ok((food.match(/id="food-\d{3}"/g) || []).length >= 17);
   assert.match(shopping, /購物清單待補/);
   assert.doesNotMatch(shopping, /示範商品/);
   for (const html of [itinerary, attractions, food, shopping]) {
     assert.doesNotMatch(html, /data-search(?:-text)?=/);
     assert.doesNotMatch(html, /type="search"/);
+  }
+  for (const html of [attractions, food, shopping]) {
+    assert.doesNotMatch(html, /data-filter|data-clear|data-empty|data-result-count|data-card/);
+    assert.doesNotMatch(html, /<select|清除篩選|沒有符合條件/);
   }
 });
 
