@@ -21,10 +21,15 @@ test('輸出完整的行程、餐廳與購物空狀態', async () => {
   const outputDir = await mkdtemp(join(tmpdir(), 'korean-trip-'));
   await buildSite({ outputDir });
   const itinerary = await readFile(join(outputDir, 'itinerary/index.html'), 'utf8');
+  const attractions = await readFile(join(outputDir, 'attractions/index.html'), 'utf8');
   const food = await readFile(join(outputDir, 'food/index.html'), 'utf8');
   const shopping = await readFile(join(outputDir, 'shopping/index.html'), 'utf8');
   assert.equal((itinerary.match(/data-day-tab/g) || []).length, 7);
   assert.ok((food.match(/data-card="food"/g) || []).length >= 17);
   assert.match(shopping, /購物清單待補/);
   assert.doesNotMatch(shopping, /示範商品/);
+  for (const html of [itinerary, attractions, food, shopping]) {
+    assert.doesNotMatch(html, /data-search(?:-text)?=/);
+    assert.doesNotMatch(html, /type="search"/);
+  }
 });

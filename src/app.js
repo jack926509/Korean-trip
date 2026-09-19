@@ -1,16 +1,9 @@
-export function normalize(value = '') {
-  return value.toLocaleLowerCase('zh-Hant').replace(/\s+/g, '');
-}
-
-export function matchesCard(card, { query = '', filter = '' } = {}) {
-  const queryMatch = !normalize(query) || normalize(card.search).includes(normalize(query));
-  const filterMatch = !filter || card.filters.includes(filter);
-  return queryMatch && filterMatch;
+export function matchesFilter(card, filter = '') {
+  return !filter || card.filters.includes(filter);
 }
 
 function setupFilters() {
   for (const scope of document.querySelectorAll('[data-filter-scope]')) {
-    const search = scope.querySelector('[data-search]');
     const select = scope.querySelector('[data-filter]');
     const cards = [...scope.querySelectorAll('[data-card]')];
     const empty = scope.querySelector('[data-empty]');
@@ -18,9 +11,9 @@ function setupFilters() {
     const apply = () => {
       let shown = 0;
       for (const card of cards) {
-        const visible = matchesCard(
-          { search: card.dataset.searchText || '', filters: (card.dataset.filters || '').split('|') },
-          { query: search?.value || '', filter: select?.value || '' }
+        const visible = matchesFilter(
+          { filters: (card.dataset.filters || '').split('|') },
+          select?.value || ''
         );
         card.hidden = !visible;
         if (visible) shown += 1;
@@ -28,13 +21,11 @@ function setupFilters() {
       if (empty) empty.hidden = shown !== 0;
       if (count) count.textContent = `顯示 ${shown} 筆`;
     };
-    search?.addEventListener('input', apply);
     select?.addEventListener('change', apply);
     for (const clear of scope.querySelectorAll('[data-clear]')) clear.addEventListener('click', () => {
-      if (search) search.value = '';
-      if (select) select.value = '';
-      apply();
-      search?.focus();
+        if (select) select.value = '';
+        apply();
+        select?.focus();
     });
     apply();
   }
