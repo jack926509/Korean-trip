@@ -40,6 +40,11 @@ test('輸出完整的行程、餐廳與購物商品', async () => {
   assert.match(food, /<h2>餐廳<\/h2>[\s\S]*<h2>美食清單<\/h2>/);
   const foodList = food.match(/<h2>美食清單<\/h2>[\s\S]*?<\/section>/)?.[0];
   assert.ok(foodList);
+  assert.doesNotMatch(foodList, /class="hours"|截圖中的時間資訊|截圖未提供(?:營業|販售)時間/);
+  assert.equal((food.match(/class="hours"/g) || []).length, 17);
+  assert.match(shopping, /<h2>購物清單<\/h2>/);
+  assert.doesNotMatch(shopping, /product-spec|record-note|product-area|product-notes/);
+  assert.equal((shopping.match(/class="product-price"/g) || []).length, 6);
   assert.doesNotMatch(foodList, /確認狀態：|待確認/);
   for (const html of [itinerary, attractions, food, shopping]) {
     assert.doesNotMatch(html, /data-search(?:-text)?=/);
