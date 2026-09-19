@@ -1,0 +1,8 @@
+[
+  {"id":"transport-outbound","type":"航班","from":"臺灣","to":"首爾","departAt":"2026-09-24T16:55","arriveAt":"2026-09-24T20:25","note":"機場、航班號與各段時區待核對。","status":"暫定","sourceRefs":["src-itinerary-0924"]},
+  {"id":"transport-airport-transfer","type":"接送","from":"首爾機場待確認","to":"ARA Hotel","departAt":null,"arriveAt":null,"note":"接送時間與機場待補。","status":"暫定","sourceRefs":["src-itinerary-0924"]},
+  {"id":"transport-seoul-jeonju","type":"鐵路","from":"首爾站","to":"全州站","departAt":"2026-09-27T07:39:00+09:00","arriveAt":"2026-09-27T09:25:00+09:00","note":"車種與班次待票券核對。","status":"暫定","sourceRefs":["src-itinerary-0927"]},
+  {"id":"transport-jeonju-daejeon","type":"鐵路","from":"全州站","to":"大田（抵達站待確認）","departAt":"2026-09-28T08:17:00+09:00","arriveAt":"2026-09-28T09:49:00+09:00","note":"車種、轉乘與抵達站待核對。","status":"暫定","sourceRefs":["src-itinerary-0928"]},
+  {"id":"transport-seodaejeon-yongsan","type":"鐵路","from":"西大田站","to":"龍山站","departAt":"2026-09-28T19:07:00+09:00","arriveAt":"2026-09-28T20:15:00+09:00","note":"車種與班次待核對。","status":"暫定","sourceRefs":["src-itinerary-0928"]},
+  {"id":"transport-return","type":"航班","from":"首爾","to":"臺灣","departAt":"2026-09-30T13:55","arriveAt":"2026-09-30T15:30","note":"機場、航班號與各段時區待核對。","status":"暫定","sourceRefs":["src-itinerary-0930"]}
+]

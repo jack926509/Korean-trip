@@ -1,0 +1,5 @@
+[
+  {"id":"attraction-gyeongbokgung","nameZh":"景福宮","nameKo":"경복궁","city":"首爾","area":"鐘路","category":"古蹟","summary":"已排入 9/25；開放時間、門票與官方資訊待確認。","status":"已排入","verificationStatus":"待確認","sourceRefs":["src-itinerary-0925"]},
+  {"id":"attraction-hangang","nameZh":"漢江泡麵活動","nameKo":"한강","city":"首爾","area":null,"category":"河岸","summary":"具體公園、入口及購買地點待補。","status":"已排入","verificationStatus":"待確認","sourceRefs":["src-itinerary-0925"]},
+  {"id":"attraction-toy-street","nameZh":"玩具街","nameKo":null,"city":"首爾","area":null,"category":"街區","summary":"原行程未記具體地點，不建立地圖連結。","status":"已排入","verificationStatus":"待確認","sourceRefs":["src-itinerary-0926"]}
+]

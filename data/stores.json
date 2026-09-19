@@ -1,0 +1,9 @@
+[
+  {"id":"store-pokemon-jonggak","nameZh":"鐘閣站寶可夢商店","nameKo":null,"city":"首爾","area":"鐘閣","category":"角色商品","note":"正式店名與分店待確認。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0925"]},
+  {"id":"store-yongsan-card","nameZh":"龍山卡牌店","nameKo":null,"city":"首爾","area":"龍山","category":"卡牌","note":"店名待補。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0925"]},
+  {"id":"store-emart-yongsan","nameZh":"龍山 emart","nameKo":"이마트","city":"首爾","area":"龍山","category":"超市","note":"原資訊表有假期記號，但意義與星期不一致，待確認。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0925","src-info-hours"]},
+  {"id":"store-traders","nameZh":"Traders Wholesale Club","nameKo":"트레이더스 홀세일 클럽","city":"首爾","area":null,"category":"量販店","note":"分店待確認。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0926","src-info-hours"]},
+  {"id":"store-shoopen-hongdae","nameZh":"弘大 SHOOPEN","nameKo":"슈펜","city":"首爾","area":"弘大","category":"鞋包服飾","note":"分店資訊待確認。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0926"]},
+  {"id":"store-bucks-leather","nameZh":"bucks&leather","nameKo":null,"city":"首爾","area":"APM Place B2","category":"皮件","note":"原行程記載 APM Place B2。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0928"]},
+  {"id":"store-lotte","nameZh":"樂天","nameKo":"롯데","city":"首爾","area":null,"category":"百貨商場","note":"商場與分店待確認。","verificationStatus":"待確認","sourceRefs":["src-itinerary-0929","src-info-hours"]}
+]

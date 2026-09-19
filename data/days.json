@@ -1,0 +1,36 @@
+[
+  {"id":"day-01","date":"2026-09-24","dayNumber":1,"cities":["臺灣","首爾"],"title":"抵達首爾","summary":"傍晚出發，抵達後接送至飯店。","stayId":"stay-ara","sourceRefs":["src-itinerary-0924"],"events":[
+    {"id":"d1-flight","order":1,"type":"交通","startTime":"16:55","endTime":"20:25","title":"臺灣 → 首爾","note":"機場、航班號與時區仍待核對。","status":"暫定","transportId":"transport-outbound"},
+    {"id":"d1-transfer","order":2,"type":"交通","startTime":null,"endTime":null,"title":"機場接送至飯店","note":"接送細節待補。","status":"暫定","transportId":"transport-airport-transfer"},
+    {"id":"d1-food","order":3,"type":"美食","startTime":null,"endTime":null,"title":"吃豬湯","note":"店家待補，不對應現有候選餐廳。","status":"暫定"},
+    {"id":"d1-stay","order":4,"type":"住宿","startTime":null,"endTime":null,"title":"ARA Hotel","note":"原表僅記載於 9/24。","status":"暫定"}]},
+  {"id":"day-02","date":"2026-09-25","dayNumber":2,"cities":["首爾"],"title":"古宮與龍山採買","summary":"從安國、景福宮一路前往鐘閣與龍山，晚上到漢江。","stayId":null,"sourceRefs":["src-itinerary-0925"],"events":[
+    {"id":"d2-mugoku","order":1,"type":"美食","startTime":null,"endTime":null,"title":"安國站吃無垢屋","note":"營業與假期資訊待確認。","status":"暫定","placeId":"food-015"},
+    {"id":"d2-palace","order":2,"type":"景點","startTime":null,"endTime":null,"title":"景福宮","note":"開放時間與門票待確認。","status":"暫定","placeId":"attraction-gyeongbokgung"},
+    {"id":"d2-pokemon","order":3,"type":"購物","startTime":null,"endTime":null,"title":"鐘閣站寶可夢商店","note":"正式店名與分店待確認。","status":"暫定","placeId":"store-pokemon-jonggak"},
+    {"id":"d2-bread","order":4,"type":"美食","startTime":null,"endTime":null,"title":"龍鬚糖小哥推薦的麵包店","note":"店名待補；原筆記營業時間 08:00～23:00，待確認。","status":"暫定"},
+    {"id":"d2-card","order":5,"type":"購物","startTime":null,"endTime":null,"title":"龍山卡牌店","note":"店名待補。","status":"暫定","placeId":"store-yongsan-card"},
+    {"id":"d2-emart","order":6,"type":"購物","startTime":null,"endTime":null,"title":"龍山 emart","note":"假期營業待確認。","status":"暫定","placeId":"store-emart-yongsan"},
+    {"id":"d2-river","order":7,"type":"美食","startTime":null,"endTime":null,"title":"漢江吃泡麵","note":"公園、入口與購買地點待補。","status":"暫定","placeId":"attraction-hangang"}]},
+  {"id":"day-03","date":"2026-09-26","dayNumber":3,"cities":["首爾"],"title":"市場、採買與弘大","summary":"泡菜鍋早餐後走訪玩具街、望遠、弘大與新村。","stayId":null,"sourceRefs":["src-itinerary-0926"],"events":[
+    {"id":"d3-kimchi","order":1,"type":"美食","startTime":null,"endTime":null,"title":"早餐吃泡菜鍋","note":"不直接配對現有泡菜鍋候選。","status":"暫定"},
+    {"id":"d3-toy","order":2,"type":"景點","startTime":null,"endTime":null,"title":"玩具街","note":"具體地點待確認。","status":"暫定","placeId":"attraction-toy-street"},
+    {"id":"d3-ugly-1","order":3,"type":"美食","startTime":null,"endTime":null,"title":"uglybakery","note":"與同日望遠筆記是否同店待確認。","status":"暫定"},
+    {"id":"d3-traders","order":4,"type":"購物","startTime":null,"endTime":null,"title":"Traders Wholesale Club","note":"分店待確認。","status":"暫定","placeId":"store-traders"},
+    {"id":"d3-ugly-2","order":5,"type":"美食","startTime":null,"endTime":null,"title":"uglybakery（望遠）","note":"保留第二筆原始安排，暫不合併。","status":"暫定"},
+    {"id":"d3-shoopen","order":6,"type":"購物","startTime":null,"endTime":null,"title":"弘大 SHOOPEN","note":"分店資訊待確認。","status":"暫定","placeId":"store-shoopen-hongdae"},
+    {"id":"d3-tofu","order":7,"type":"美食","startTime":null,"endTime":null,"title":"新村豆腐鍋","note":"營業與假期資訊待確認。","status":"暫定","placeId":"food-002"}]},
+  {"id":"day-04","date":"2026-09-27","dayNumber":4,"cities":["首爾","全州"],"title":"前往全州","summary":"早上搭車前往全州，安排黃豆芽湯飯與韓屋住宿。","stayId":"stay-jeonju-hanok","sourceRefs":["src-itinerary-0927"],"events":[
+    {"id":"d4-train","order":1,"type":"交通","startTime":"07:39","endTime":"09:25","title":"首爾站 → 全州","note":"車種與班次待票券核對。","status":"暫定","transportId":"transport-seoul-jeonju"},
+    {"id":"d4-food","order":2,"type":"美食","startTime":null,"endTime":null,"title":"黃豆芽湯飯","note":"店家待補。","status":"暫定"},
+    {"id":"d4-stay","order":3,"type":"住宿","startTime":null,"endTime":null,"title":"全州韓屋住宿","note":"住宿名稱與地址待補。","status":"暫定"}]},
+  {"id":"day-05","date":"2026-09-28","dayNumber":5,"cities":["全州","大田","首爾"],"title":"大田轉行與東大門","summary":"早上由全州前往大田，晚間回到首爾採買。","stayId":null,"sourceRefs":["src-itinerary-0928"],"events":[
+    {"id":"d5-train-1","order":1,"type":"交通","startTime":"08:17","endTime":"09:49","title":"全州站 → 大田","note":"抵達站、車種與轉乘待核對。","status":"暫定","transportId":"transport-jeonju-daejeon"},
+    {"id":"d5-train-2","order":2,"type":"交通","startTime":"19:07","endTime":"20:15","title":"西大田 → 龍山","note":"西大田與大田不可視為同站。","status":"暫定","transportId":"transport-seodaejeon-yongsan"},
+    {"id":"d5-shop","order":3,"type":"購物","startTime":null,"endTime":null,"title":"APM Place B2・bucks&leather","note":"營業與店櫃資訊待確認。","status":"暫定","placeId":"store-bucks-leather"}]},
+  {"id":"day-06","date":"2026-09-29","dayNumber":6,"cities":["首爾"],"title":"首爾自由採買日","summary":"安排烤肉與樂天，詳細店家及分店待補。","stayId":null,"sourceRefs":["src-itinerary-0929"],"events":[
+    {"id":"d6-bbq","order":1,"type":"美食","startTime":null,"endTime":null,"title":"烤肉","note":"店家待補，不自行挑選候選餐廳。","status":"暫定"},
+    {"id":"d6-lotte","order":2,"type":"購物","startTime":null,"endTime":null,"title":"樂天","note":"商場與分店待確認。","status":"暫定","placeId":"store-lotte"}]},
+  {"id":"day-07","date":"2026-09-30","dayNumber":7,"cities":["首爾","臺灣"],"title":"返回臺灣","summary":"上午整理行李，下午搭機返臺。","stayId":null,"sourceRefs":["src-itinerary-0930"],"events":[
+    {"id":"d7-flight","order":1,"type":"交通","startTime":"13:55","endTime":"15:30","title":"首爾 → 臺灣","note":"機場、航班號與時區仍待核對。","status":"暫定","transportId":"transport-return"}]}
+]

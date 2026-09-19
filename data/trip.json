@@ -1,0 +1,11 @@
+{
+  "id": "trip-korea-2026",
+  "name": "首爾・全州・大田七日旅",
+  "nameKo": "서울 · 전주 · 대전 여행",
+  "startDate": "2026-09-24",
+  "endDate": "2026-09-30",
+  "cities": ["首爾", "全州", "大田"],
+  "status": "暫定行程",
+  "updatedAt": "2026-09-19T20:19:00+08:00",
+  "sourceUrl": "https://docs.google.com/spreadsheets/d/1IeNFIwueskbvd44iwC_IqpoAlSKPt8t0LOU51V3mfmk/edit?usp=sharing"
+}
