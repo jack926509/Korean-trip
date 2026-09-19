@@ -21,9 +21,9 @@ test('購物商品是可擴充陣列且關聯識別碼都有效', async () => {
   assert.deepEqual(linkedFood.map((event) => event.placeId).sort(), ['food-002', 'food-015']);
 });
 
-test('每筆餐廳保留來源原文與未查證狀態', async () => {
+test('原有餐廳保留來源原文與未查證狀態', async () => {
   const { restaurants } = await loadData();
-  for (const item of restaurants) {
+  for (const item of restaurants.filter((entry) => !entry.image)) {
     assert.match(item.id, /^food-\d{3}$/);
     assert.ok(item.rawName);
     assert.ok(item.rawHours);
@@ -31,6 +31,21 @@ test('每筆餐廳保留來源原文與未查證狀態', async () => {
     assert.equal(item.verificationStatus, '待確認');
   }
   assert.match(restaurants.find((item) => item.id === 'food-011').rawHours, /11:300/);
+});
+
+test('截圖清單新增 6 筆美食與 11 項購物，且圖片來源完整', async () => {
+  const data = await loadData();
+  const screenshotFood = data.restaurants.filter((item) => item.image);
+  assert.equal(screenshotFood.length, 6);
+  assert.equal(data.shoppingItems.length, 11);
+  assert.equal(new Set([...screenshotFood, ...data.shoppingItems].map((item) => item.image)).size, 16);
+  assert.equal(data.shoppingItems.filter((item) => item.image === 'IMG_6411.PNG').length, 2);
+  assert.equal(screenshotFood.find((item) => item.id === 'food-022').recommendedDishes[0], '優格系列');
+  for (const item of [...screenshotFood, ...data.shoppingItems]) {
+    assert.ok(item.image);
+    assert.ok(item.sourceRefs.length > 0);
+    assert.doesNotMatch(JSON.stringify(item), /pending|待確認/);
+  }
 });
 
 test('不存在的日曆日期會被拒絕', async () => {

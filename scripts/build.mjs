@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { loadData, validateData } from './validate-data.mjs';
@@ -11,7 +11,8 @@ const safeUrl = (value) => { try { const url = new URL(value); return ['http:','
 const dateLabel = (iso) => { const d = new Date(`${iso}T12:00:00+09:00`); return `${d.getMonth()+1}/${d.getDate()}（${weekdays[d.getDay()]}）`; };
 const checkedDateLabel = (iso) => iso.replace(/^(\d{4})-(\d{2})-(\d{2})$/, (_,year,month,day)=>`${year}/${Number(month)}/${Number(day)}`);
 const status = (text='待確認') => `<span class="status">${esc(text)}</span>`;
-const chips = (items=[]) => items.map((item)=>`<span class="chip">${esc(item)}</span>`).join('');
+const chips = (items=[]) => items.filter((item)=>item!==null && item!==undefined && item!=='').map((item)=>`<span class="chip">${esc(item)}</span>`).join('');
+const referenceImage = (file, alt) => file ? `<a class="reference-image" href="../assets/list/${esc(file)}" target="_blank" rel="noreferrer"><img src="../assets/list/${esc(file)}" alt="${esc(alt)}參考截圖" loading="lazy" decoding="async"><span>點開查看完整截圖 ↗</span></a>` : '';
 const icon = (type) => ({交通:'線',景點:'景',美食:'味',購物:'買',住宿:'宿'}[type] || '記');
 const publicEventNote = (event) => ({
   'd1-stay':'9/24 住宿列為 ARA Hotel，其餘首爾住宿日期待補。',
@@ -77,14 +78,17 @@ function attractions(data) {
 }
 
 function food(data) {
-  const cards=data.restaurants.map((x)=>{const dates=scheduledDates(data,x.id);const direction=x.direction.slice(0,1);const notes=publicRestaurantNotes(x); return `<article id="${x.id}" class="catalog-card food-card"><div class="card-top">${chips([direction,x.area,...x.foodTypes.slice(0,1)])}${status(x.verificationStatus)}</div><h2>${esc(x.nameZh)}</h2>${x.nameKo?`<p class="ko" lang="ko">${esc(x.nameKo)}</p>`:''}${dates.length?`<a class="text-link scheduled" href="../itinerary/?day=${esc(data.days.find(day=>day.events.some(e=>e.placeId===x.id)).id)}">已排入 ${esc(dates.join('、'))} →</a>`:''}<div class="hours"><small>營業與休業提醒</small><p>${lines(x.rawHours)}</p></div><details><summary>餐點與備註</summary>${x.recommendedDishes.length?`<h3>餐點</h3><ul>${x.recommendedDishes.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`:''}${notes.length?`<h3>注意事項</h3><ul>${notes.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`:''}<p><b>確認狀態：</b>${esc(x.identityStatus)}</p></details></article>`}).join('');
-  return layout({title:'美食資料庫',eyebrow:'맛집 · Food archive',active:'food',body:`<p class="lead">共 17 筆候選餐廳。營業、價格與秋夕異動仍待逐店確認，出發前請再查看店家公告。</p><div class="catalog-grid food-grid">${cards}</div>`});
+  const card=(x)=>{const dates=scheduledDates(data,x.id);const direction=x.image?null:x.direction.slice(0,1);const notes=publicRestaurantNotes(x);const fromScreenshot=Boolean(x.image); return `<article id="${x.id}" class="catalog-card food-card"><div class="card-top">${chips([direction,x.area,...x.foodTypes.slice(0,1)])}${status(x.verificationStatus)}</div>${referenceImage(x.image,x.nameZh)}<h2>${esc(x.nameZh)}</h2>${x.nameKo?`<p class="ko" lang="ko">${esc(x.nameKo)}</p>`:''}${dates.length?`<a class="text-link scheduled" href="../itinerary/?day=${esc(data.days.find(day=>day.events.some(e=>e.placeId===x.id)).id)}">已排入 ${esc(dates.join('、'))} →</a>`:''}<div class="hours"><small>${fromScreenshot?'截圖中的時間資訊':'營業與休業提醒'}</small><p>${lines(x.rawHours)}</p></div><details><summary>餐點與備註</summary>${x.recommendedDishes.length?`<h3>餐點</h3><ul>${x.recommendedDishes.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`:''}${notes.length?`<h3>注意事項</h3><ul>${notes.map(i=>`<li>${esc(i)}</li>`).join('')}</ul>`:''}${fromScreenshot?'':`<p><b>確認狀態：</b>${esc(x.identityStatus)}</p>`}</details></article>`};
+  const originalCards=data.restaurants.filter(x=>!x.image).map(card).join('');
+  const screenshotCards=data.restaurants.filter(x=>x.image).map(card).join('');
+  const screenshotCount=data.restaurants.filter(x=>x.image).length;
+  return layout({title:'美食資料庫',eyebrow:'맛집 · Food archive',active:'food',body:`<p class="lead">保留原有 17 筆候選餐廳，另加入 ${screenshotCount} 筆截圖美食。截圖中的價格與時間是整理當下的記錄，出發前請再查看店家公告。</p><section><div class="section-title"><div><p class="eyebrow">SCREENSHOT PICKS</p><h2>截圖美食清單</h2></div></div><div class="catalog-grid food-grid">${screenshotCards}</div></section><section><div class="section-title"><div><p class="eyebrow">ORIGINAL LIST</p><h2>原有候選餐廳</h2></div></div><div class="catalog-grid food-grid">${originalCards}</div></section>`});
 }
 
 function shopping(data) {
   const stores=data.stores.map((x)=>{const dates=scheduledDates(data,x.id);return `<article class="catalog-card"><div class="card-top">${chips([x.category,x.area||'地區待補'])}${status(x.verificationStatus)}</div><h2>${esc(x.nameZh)}</h2>${x.nameKo?`<p class="ko">${esc(x.nameKo)}</p>`:''}<p>${esc(publicStoreNote(x))}</p>${dates.length?`<a class="text-link" href="../itinerary/?day=${esc(data.days.find(day=>day.events.some(e=>e.placeId===x.id)).id)}">已排入 ${esc(dates.join('、'))} →</a>`:''}</article>`}).join('');
-  const products=data.shoppingItems.length?`<div class="catalog-grid">${data.shoppingItems.map(x=>`<article class="catalog-card"><div class="card-top">${chips([x.category||'未分類',x.brand||'品牌待補'])}</div><h3>${esc(x.name)}</h3><p>${esc([x.variant,x.quantity?`數量 ${x.quantity}`:''].filter(Boolean).join(' · ')||'規格與數量待補')}</p></article>`).join('')}</div>`:`<div class="empty-state product-empty"><span class="seal">待</span><h2>購物清單待補</h2><p>之後會加入商品、規格與購買地點。目前沒有虛構商品、價格或庫存。</p></div>`;
-  return layout({title:'購物與商店',eyebrow:'쇼핑 · Shopping',active:'shopping',body:`<section class="shopping-intro"><div><p class="eyebrow">LIST 01</p><h2>去哪裡逛</h2><p>這些是行程裡已有的商店線索，分店未明時不猜地址。</p></div><div><p class="eyebrow">LIST 02</p><h2>要買什麼</h2><p>商品、規格與數量會在你提供清單後加入。</p></div></section><div class="catalog-grid">${stores}</div><section><div class="section-title"><div><p class="eyebrow">BUY LIST</p><h2>商品清單</h2></div></div>${products}</section>`});
+  const products=data.shoppingItems.length?`<div class="catalog-grid product-grid">${data.shoppingItems.map(x=>`<article id="${esc(x.id)}" class="catalog-card product-card"><div class="card-top">${chips([x.category||'其他',x.brand||'品牌未標示'])}</div>${referenceImage(x.image,x.name)}<h3>${esc(x.name)}</h3>${x.variant?`<p class="product-spec">${esc(x.variant)}</p>`:''}${x.referencePrice?`<p class="product-price">${esc(x.referencePrice)}</p>`:''}${x.priceNote?`<small class="record-note">${esc(x.priceNote)}</small>`:''}${x.area?`<p class="product-area">購買線索：${esc(x.area)}</p>`:''}${x.notes?.length?`<ul class="product-notes">${x.notes.map(note=>`<li>${esc(note)}</li>`).join('')}</ul>`:''}</article>`).join('')}</div>`:`<div class="empty-state product-empty"><span class="seal">待</span><h2>購物清單待補</h2><p>之後會加入商品、規格與購買地點。目前沒有虛構商品、價格或庫存。</p></div>`;
+  return layout({title:'購物與商店',eyebrow:'쇼핑 · Shopping',active:'shopping',body:`<section class="shopping-intro"><div><p class="eyebrow">LIST 01</p><h2>去哪裡逛</h2><p>這些是行程裡已有的商店線索，分店未明時不猜地址。</p></div><div><p class="eyebrow">LIST 02</p><h2>要買什麼</h2><p>已依你提供的截圖整理 ${data.shoppingItems.length} 項商品，點圖片可查看原始截圖。</p></div></section><div class="catalog-grid">${stores}</div><section><div class="section-title"><div><p class="eyebrow">BUY LIST</p><h2>商品清單</h2></div></div>${products}</section>`});
 }
 
 function info(data) {
@@ -101,6 +105,9 @@ export async function buildSite({ outputDir=join(rootDir,'dist') }={}) {
   const pages=[['index.html',home(data)],['itinerary/index.html',itinerary(data)],['attractions/index.html',attractions(data)],['food/index.html',food(data)],['shopping/index.html',shopping(data)],['info/index.html',info(data)]];
   for(const [file,html] of pages){await mkdir(dirname(join(outputDir,file)),{recursive:true});await writeFile(join(outputDir,file),html);}
   await Promise.all(['styles.css','app.js','favicon.svg'].map(async file=>writeFile(join(outputDir,'assets',file),await readFile(join(rootDir,'src',file),'utf8'))));
+  const referenceImages=[...new Set([...data.restaurants,...data.shoppingItems].map(item=>item.image).filter(Boolean))];
+  await mkdir(join(outputDir,'assets','list'),{recursive:true});
+  await Promise.all(referenceImages.map(file=>copyFile(join(rootDir,'美食與購物清單',file),join(outputDir,'assets','list',file))));
   console.log(`建置完成：${relative(rootDir,outputDir)}（6 個頁面）`);
 }
 

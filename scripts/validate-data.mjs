@@ -24,7 +24,7 @@ export function validateData(data) {
     else idSets[name].add(item.id);
   }
   const sourceIds = idSets.sources;
-  for (const name of collections.filter((name) => !['sources', 'shoppingItems', 'travelUpdates'].includes(name))) for (const item of data[name]) {
+  for (const name of collections.filter((name) => !['sources', 'travelUpdates'].includes(name))) for (const item of data[name]) {
     if (!item.sourceRefs?.length) errors.push(`${name}/${item.id}: 缺少 sourceRefs`);
     for (const ref of item.sourceRefs || []) if (!sourceIds.has(ref)) errors.push(`${name}/${item.id}: 找不到來源 ${ref}`);
   }
@@ -58,5 +58,5 @@ export function validateData(data) {
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const errors = validateData(await loadData());
   if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
-  else console.log('資料驗證通過：7 天行程、17 筆餐廳與全部關聯有效。');
+  else console.log('資料驗證通過：7 天行程、23 筆美食、11 項購物與全部關聯有效。');
 }
