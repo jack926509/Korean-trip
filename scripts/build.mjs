@@ -83,7 +83,7 @@ function food(data) {
   const originalCards=data.restaurants.filter(x=>!x.image).map(card).join('');
   const screenshotCards=data.restaurants.filter(x=>x.image).map(card).join('');
   const screenshotCount=data.restaurants.filter(x=>x.image).length;
-  return layout({title:'美食資料庫',eyebrow:'맛집 · Food archive',active:'food',body:`<p class="lead">保留原有 17 筆候選餐廳，另加入 ${screenshotCount} 筆截圖美食。截圖中的價格與時間是整理當下的記錄，出發前請再查看店家公告。</p><section><div class="section-title"><div><p class="eyebrow">SCREENSHOT PICKS</p><h2>截圖美食清單</h2></div></div><div class="catalog-grid food-grid">${screenshotCards}</div></section><section><div class="section-title"><div><p class="eyebrow">ORIGINAL LIST</p><h2>原有候選餐廳</h2></div></div><div class="catalog-grid food-grid">${originalCards}</div></section>`});
+  return layout({title:'美食資料庫',eyebrow:'맛집 · Food archive',active:'food',body:`<p class="lead">保留原有 17 筆候選餐廳，另加入 ${screenshotCount} 筆截圖美食。截圖中的價格與時間是整理當下的記錄，出發前請再查看店家公告。</p><section><div class="section-title"><div><p class="eyebrow">RESTAURANTS</p><h2>餐廳</h2></div></div><div class="catalog-grid food-grid">${originalCards}</div></section><section><div class="section-title"><div><p class="eyebrow">FOOD LIST</p><h2>美食清單</h2></div></div><div class="catalog-grid food-grid">${screenshotCards}</div></section>`});
 }
 
 function shopping(data) {

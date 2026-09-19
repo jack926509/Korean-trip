@@ -36,7 +36,10 @@ test('輸出完整的行程、餐廳與購物商品', async () => {
   assert.equal((shopping.match(/class="catalog-card product-card"/g) || []).length, 11);
   assert.equal((shopping.match(/參考截圖/g) || []).length, 11);
   assert.doesNotMatch(shopping, /購物清單待補|之後會加入商品/);
-  assert.doesNotMatch(food.match(/<h2>截圖美食清單<\/h2>[\s\S]*?<h2>原有候選餐廳<\/h2>/)?.[0] || '', /確認狀態：|待確認/);
+  assert.match(food, /<h2>餐廳<\/h2>[\s\S]*<h2>美食清單<\/h2>/);
+  const foodList = food.match(/<h2>美食清單<\/h2>[\s\S]*?<\/section>/)?.[0];
+  assert.ok(foodList);
+  assert.doesNotMatch(foodList, /確認狀態：|待確認/);
   for (const html of [itinerary, attractions, food, shopping]) {
     assert.doesNotMatch(html, /data-search(?:-text)?=/);
     assert.doesNotMatch(html, /type="search"/);
