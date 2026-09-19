@@ -79,3 +79,30 @@ test('首頁與資訊頁呈現最新旅遊摘要', async () => {
   assert.match(info, /候選，尚未排入/);
   assert.equal((info.match(/class="official-link"/g) || []).length, 7);
 });
+
+test('六頁的 PWA 與 Apple 圖示路徑有效且 PNG 尺寸正確', async () => {
+  const outputDir = await mkdtemp(join(tmpdir(), 'korean-trip-icons-'));
+  await buildSite({ outputDir });
+  const manifest = JSON.parse(await readFile(join(outputDir, 'manifest.webmanifest'), 'utf8'));
+  assert.equal(manifest.short_name, '韓遊帖');
+  assert.equal(manifest.start_url, './');
+  assert.equal(manifest.scope, './');
+  assert.equal(manifest.display, 'standalone');
+  assert.deepEqual(manifest.icons.map(icon => icon.sizes), ['192x192', '512x512']);
+  for (const [file, size] of [['icon-192.png',192], ['icon-512.png',512], ['apple-touch-icon.png',180], ['favicon-32.png',32]]) {
+    const png = await readFile(join(outputDir, 'assets/icons', file));
+    assert.equal(png.subarray(0,8).toString('hex'), '89504e470d0a1a0a');
+    assert.equal(png.readUInt32BE(16), size);
+    assert.equal(png.readUInt32BE(20), size);
+  }
+  for (const page of ['index.html','itinerary/index.html','attractions/index.html','food/index.html','shopping/index.html','info/index.html']) {
+    const html = await readFile(join(outputDir,page),'utf8');
+    const base = new URL(page, 'https://example.test/');
+    for (const rel of ['manifest','apple-touch-icon','icon']) {
+      const href = html.match(new RegExp(`<link rel="${rel}" href="([^"]+)"`))?.[1];
+      assert.ok(href, `${page} 缺少 ${rel}`);
+      await readFile(join(outputDir, new URL(href,base).pathname));
+    }
+  }
+  for (const icon of manifest.icons) await readFile(join(outputDir, icon.src));
+});

@@ -53,7 +53,7 @@ function nav(active, depth) {
 function layout({ title, eyebrow, active, depth=1, body }) {
   const p = depth ? '../' : './';
   const heading=title==='首爾・全州・大田七日旅'?'首爾・全州・大田<br><span class="nowrap">七日旅</span>':esc(title);
-  return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#a3312d"><meta name="description" content="2026 首爾、全州、大田七日手機旅遊手冊"><title>${esc(title)}｜韓遊帖</title><link rel="icon" href="${p}assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="${p}assets/styles.css"><script type="module" src="${p}assets/app.js"></script></head><body><a class="skip" href="#main">跳至內容</a><header class="masthead"><a class="brand" href="${p}index.html"><span class="seal">旅</span><span><b>韓遊帖</b><small lang="ko">한국 여행첩</small></span></a>${nav(active,depth)}</header><main id="main"><header class="page-head"><p class="eyebrow">${esc(eyebrow)}</p><h1>${heading}</h1><span class="brush" aria-hidden="true"></span></header>${body}</main><footer><p>2026 首爾・全州・大田｜資料整理於 2026/9/19</p><p>所有營業、交通及分店資訊仍須於出發前確認。</p></footer></body></html>`;
+  return `<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#a3312d"><meta name="description" content="2026 首爾、全州、大田七日手機旅遊手冊"><title>${esc(title)}｜韓遊帖</title><link rel="icon" href="${p}assets/icons/favicon-32.png" type="image/png" sizes="32x32"><link rel="apple-touch-icon" href="${p}assets/icons/apple-touch-icon.png" sizes="180x180"><link rel="manifest" href="${p}manifest.webmanifest"><link rel="stylesheet" href="${p}assets/styles.css"><script type="module" src="${p}assets/app.js"></script></head><body><a class="skip" href="#main">跳至內容</a><header class="masthead"><a class="brand" href="${p}index.html"><span class="seal">旅</span><span><b>韓遊帖</b><small lang="ko">한국 여행첩</small></span></a>${nav(active,depth)}</header><main id="main"><header class="page-head"><p class="eyebrow">${esc(eyebrow)}</p><h1>${heading}</h1><span class="brush" aria-hidden="true"></span></header>${body}</main><footer><p>2026 首爾・全州・大田｜資料整理於 2026/9/19</p><p>所有營業、交通及分店資訊仍須於出發前確認。</p></footer></body></html>`;
 }
 
 function home(data) {
@@ -109,6 +109,9 @@ export async function buildSite({ outputDir=join(rootDir,'dist') }={}) {
   for(const [file,html] of pages){await mkdir(dirname(join(outputDir,file)),{recursive:true});await writeFile(join(outputDir,file),html.replace('assets/styles.css',`assets/${stylesFile}`));}
   await writeFile(join(outputDir,'assets',stylesFile),styles);
   await Promise.all(['styles.css','app.js','favicon.svg'].map(async file=>writeFile(join(outputDir,'assets',file),await readFile(join(rootDir,'src',file),'utf8'))));
+  await copyFile(join(rootDir,'src','manifest.webmanifest'),join(outputDir,'manifest.webmanifest'));
+  await mkdir(join(outputDir,'assets','icons'),{recursive:true});
+  await Promise.all(['icon-192.png','icon-512.png','apple-touch-icon.png','favicon-32.png'].map(file=>copyFile(join(rootDir,'src','icons',file),join(outputDir,'assets','icons',file))));
   const referenceImages=[...new Set([...data.restaurants,...data.shoppingItems].map(item=>item.image).filter(Boolean))];
   await mkdir(join(outputDir,'assets','list'),{recursive:true});
   await Promise.all(referenceImages.map(file=>copyFile(join(rootDir,'美食與購物清單',file),join(outputDir,'assets','list',file))));
