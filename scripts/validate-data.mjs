@@ -6,7 +6,7 @@ const rootDir = join(dirname(fileURLToPath(import.meta.url)), '..');
 const files = {
   trip: 'trip.json', days: 'days.json', attractions: 'attractions.json',
   restaurants: 'restaurants.json', stores: 'stores.json', shoppingItems: 'shopping-items.json',
-  transport: 'transport.json', stays: 'stays.json', notices: 'notices.json', sources: 'sources.json'
+  transport: 'transport.json', stays: 'stays.json', notices: 'notices.json', travelUpdates: 'travel-updates.json', sources: 'sources.json'
 };
 
 export async function loadData(baseDir = rootDir) {
@@ -16,7 +16,7 @@ export async function loadData(baseDir = rootDir) {
 
 export function validateData(data) {
   const errors = [];
-  const collections = ['days', 'attractions', 'restaurants', 'stores', 'shoppingItems', 'transport', 'stays', 'notices', 'sources'];
+  const collections = ['days', 'attractions', 'restaurants', 'stores', 'shoppingItems', 'transport', 'stays', 'notices', 'travelUpdates', 'sources'];
   const idSets = Object.fromEntries(collections.map((name) => [name, new Set()]));
   for (const name of collections) for (const item of data[name]) {
     if (!item.id) errors.push(`${name}: 缺少 id`);
@@ -24,7 +24,7 @@ export function validateData(data) {
     else idSets[name].add(item.id);
   }
   const sourceIds = idSets.sources;
-  for (const name of collections.filter((name) => !['sources', 'shoppingItems'].includes(name))) for (const item of data[name]) {
+  for (const name of collections.filter((name) => !['sources', 'shoppingItems', 'travelUpdates'].includes(name))) for (const item of data[name]) {
     if (!item.sourceRefs?.length) errors.push(`${name}/${item.id}: 缺少 sourceRefs`);
     for (const ref of item.sourceRefs || []) if (!sourceIds.has(ref)) errors.push(`${name}/${item.id}: 找不到來源 ${ref}`);
   }
@@ -43,6 +43,10 @@ export function validateData(data) {
     }
   }
   for (const item of data.restaurants) if (!item.nameZh || !item.rawName || !item.rawHours || !item.verificationStatus) errors.push(`${item.id}: 餐廳缺少必要或原始欄位`);
+  for (const item of data.travelUpdates) {
+    if (!item.title || !item.summary || !item.status || !item.checkedAt || !item.links?.length) errors.push(`${item.id}: 旅遊摘要缺少必要欄位`);
+    for (const link of item.links || []) if (!/^https:\/\//.test(link.url)) errors.push(`${item.id}: 官方旅遊資訊必須使用 HTTPS`);
+  }
   for (const source of data.sources.filter((item) => item.sheet === '吃吃喝喝' && item.range !== 'A1:Z80')) {
     if (!source.parentSourceRef || !source.recordRef || !source.rawSummary) errors.push(`${source.id}: 餐廳來源缺少父來源、原始記錄關聯或摘要`);
     if (!idSets.restaurants.has(source.recordRef)) errors.push(`${source.id}: 找不到原始餐廳記錄 ${source.recordRef}`);

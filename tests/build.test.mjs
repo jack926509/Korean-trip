@@ -33,3 +33,27 @@ test('輸出完整的行程、餐廳與購物空狀態', async () => {
     assert.doesNotMatch(html, /type="search"/);
   }
 });
+
+test('公開頁面不顯示試算表與內部整理痕跡', async () => {
+  const outputDir = await mkdtemp(join(tmpdir(), 'korean-trip-'));
+  await buildSite({ outputDir });
+  const pages = ['index.html', 'itinerary/index.html', 'attractions/index.html', 'food/index.html', 'shopping/index.html', 'info/index.html'];
+  const html = (await Promise.all(pages.map((page) => readFile(join(outputDir, page), 'utf8')))).join('\n');
+  for (const hiddenText of ['docs.google.com/spreadsheets', '1IeNFIwueskbvd44iwC_IqpoAlSKPt8t0LOU51V3mfmk', '吃吃喝喝', '原始試算表', '資料來源', '原表出處']) {
+    assert.doesNotMatch(html, new RegExp(hiddenText));
+  }
+});
+
+test('首頁與資訊頁呈現最新旅遊摘要', async () => {
+  const outputDir = await mkdtemp(join(tmpdir(), 'korean-trip-'));
+  await buildSite({ outputDir });
+  const home = await readFile(join(outputDir, 'index.html'), 'utf8');
+  const info = await readFile(join(outputDir, 'info/index.html'), 'utf8');
+  assert.match(home, /最新旅遊摘要/);
+  assert.match(home, /info\/#travel-updates/);
+  assert.equal((info.match(/data-travel-update/g) || []).length, 4);
+  assert.match(info, /9\/24–9\/26/);
+  assert.match(info, /09:00–18:00/);
+  assert.match(info, /候選，尚未排入/);
+  assert.equal((info.match(/class="official-link"/g) || []).length, 7);
+});

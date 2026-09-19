@@ -22,8 +22,11 @@ python3 -m http.server 4173 -d dist
 - 景點與商店：編輯 `data/attractions.json`、`data/stores.json`。
 - 購物商品：在 `data/shopping-items.json` 加入資料；目前為空，收到商品即可新增。
 - 航班、鐵路、住宿與提醒：編輯 `data/transport.json`、`data/stays.json`、`data/notices.json`。
+- 最新旅遊摘要：編輯 `data/travel-updates.json`，只加入已重新查閱的官方旅遊資訊；候選內容不可直接改成已排入行程。
 
 識別碼是資料關聯用的固定名稱，例如 `food-015`。更新店名時不要更換識別碼，也不要直接修改 `dist/`；`dist/` 由建置指令重新產生。
+
+網站公開頁面不顯示內部試算表連結、分頁、儲存格或整理用的推薦出處。內部 `data/sources.json` 與 raw 欄位仍保留，僅供更新比對與資料追溯。
 
 每次更新後執行：
 

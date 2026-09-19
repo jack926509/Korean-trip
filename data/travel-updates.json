@@ -1,0 +1,49 @@
+[
+  {
+    "id": "update-chuseok",
+    "label": "9/24–9/26",
+    "title": "秋夕假期與交通先確認",
+    "summary": "2026 年秋夕假期為 9/24–9/26，9/25 是秋夕當日。四大宮殿於假期免費參觀；商店、百貨與餐廳可能休息，城際火車及客運票也較緊張。建議優先確認 9/27、9/28 車票，再逐店確認前三天營業。",
+    "status": "2026 公告",
+    "checkedAt": "2026-09-19",
+    "timeZoneNote": "日期採韓國當地日期",
+    "links": [{"label":"韓國觀光公社秋夕指南","url":"https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=219&vcontsId=1593350"}]
+  },
+  {
+    "id": "update-seoul",
+    "label": "首爾 · 9/25–9/26",
+    "title": "景福宮時段與望遠候選",
+    "summary": "景福宮 9–10 月常態開放 09:00–18:00，最後入場 17:00；9/25 行程不宜拖到傍晚。9/26 可把望遠市場與望遠漢江公園列為小吃、散步或外帶野餐候選，各店秋夕營業仍須個別確認。",
+    "status": "望遠為候選，尚未排入",
+    "checkedAt": "2026-09-19",
+    "timeZoneNote": "時段採韓國當地時間",
+    "links": [
+      {"label":"首爾觀光官方景福宮","url":"https://english.visitseoul.net/PalaceArea/Gyeongbokgung/ENP000072"},
+      {"label":"首爾觀光官方望遠市場","url":"https://english.visitseoul.net/MapoArea/Mangwon-Market/ENP037950"}
+    ]
+  },
+  {
+    "id": "update-jeonju",
+    "label": "全州 · 9/27",
+    "title": "韓屋村步行與地方料理",
+    "summary": "抵達後可先放行李，再以韓屋村為中心，把慶基殿、殿洞聖堂與梧木臺列為步行候選，依住宿位置與體力取捨。除了既有黃豆芽湯飯，全州拌飯可作另一餐候選；景點入場與新增餐廳尚未確認。",
+    "status": "候選，尚未排入",
+    "checkedAt": "2026-09-19",
+    "timeZoneNote": "日期採韓國當地日期",
+    "links": [{"label":"韓國觀光公社全州攻略","url":"https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=607&vcontsId=229053"}]
+  },
+  {
+    "id": "update-daejeon",
+    "label": "大田 · 9/28",
+    "title": "銀杏洞、聖心堂與週一休館",
+    "summary": "銀杏洞文化街與聖心堂可作散步、購物、買麵包的同區候選；分店、排隊及營業時間仍待確認。9/28 是星期一，大田市立美術館與國立中央科學館常態週一休館，不宜當主要室內備案，除非另有特別開館公告。",
+    "status": "候選，尚未排入",
+    "checkedAt": "2026-09-19",
+    "timeZoneNote": "日期採韓國當地日期",
+    "links": [
+      {"label":"韓國觀光公社銀杏洞文化街","url":"https://english.visitkorea.or.kr/svc/contents/contentsView.do?dataSetId=264&menuSn=929&vcontsId=249989"},
+      {"label":"大田市立美術館","url":"https://english.visitkorea.or.kr/svc/whereToGo/locIntrdn/rgnContentsView.do?vcontsId=219453"},
+      {"label":"國立中央科學館","url":"https://english.visitkorea.or.kr/svc/contents/contentsView.do?vcontsId=111269"}
+    ]
+  }
+]
