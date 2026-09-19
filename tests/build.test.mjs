@@ -4,14 +4,20 @@ import { mkdtemp, readFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { buildSite } from '../scripts/build.mjs';
+import { createHash } from 'node:crypto';
 
 test('建置器產生六頁與共用資產', async () => {
   const outputDir = await mkdtemp(join(tmpdir(), 'korean-trip-'));
   await buildSite({ outputDir });
+  const css = await readFile(new URL('../src/styles.css', import.meta.url), 'utf8');
+  const stylesFile = `styles.${createHash('sha256').update(css).digest('hex').slice(0,12)}.css`;
+  assert.equal(await readFile(join(outputDir, 'assets', stylesFile), 'utf8'), css);
   for (const page of ['index.html', 'itinerary/index.html', 'attractions/index.html', 'food/index.html', 'shopping/index.html', 'info/index.html']) {
     const html = await readFile(join(outputDir, page), 'utf8');
     assert.match(html, /lang="zh-Hant"/);
     assert.match(html, /韓遊帖/);
+    assert.ok(html.includes(`assets/${stylesFile}`), `${page} 必須引用符合 CSS 內容的版本檔名`);
+    assert.doesNotMatch(html, /href="[^\"]*assets\/styles\.css"/);
   }
   await readFile(join(outputDir, 'assets/styles.css'), 'utf8');
   await readFile(join(outputDir, 'assets/app.js'), 'utf8');

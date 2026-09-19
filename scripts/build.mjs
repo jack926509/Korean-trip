@@ -1,6 +1,7 @@
 import { copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, relative } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 import { loadData, validateData } from './validate-data.mjs';
 
 const rootDir = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -101,9 +102,12 @@ function info(data) {
 
 export async function buildSite({ outputDir=join(rootDir,'dist') }={}) {
   const data=await loadData(rootDir); const errors=validateData(data); if(errors.length) throw new Error(errors.join('\n'));
+  const styles = await readFile(join(rootDir,'src','styles.css'),'utf8');
+  const stylesFile = `styles.${createHash('sha256').update(styles).digest('hex').slice(0,12)}.css`;
   await rm(outputDir,{recursive:true,force:true}); await mkdir(join(outputDir,'assets'),{recursive:true});
   const pages=[['index.html',home(data)],['itinerary/index.html',itinerary(data)],['attractions/index.html',attractions(data)],['food/index.html',food(data)],['shopping/index.html',shopping(data)],['info/index.html',info(data)]];
-  for(const [file,html] of pages){await mkdir(dirname(join(outputDir,file)),{recursive:true});await writeFile(join(outputDir,file),html);}
+  for(const [file,html] of pages){await mkdir(dirname(join(outputDir,file)),{recursive:true});await writeFile(join(outputDir,file),html.replace('assets/styles.css',`assets/${stylesFile}`));}
+  await writeFile(join(outputDir,'assets',stylesFile),styles);
   await Promise.all(['styles.css','app.js','favicon.svg'].map(async file=>writeFile(join(outputDir,'assets',file),await readFile(join(rootDir,'src',file),'utf8'))));
   const referenceImages=[...new Set([...data.restaurants,...data.shoppingItems].map(item=>item.image).filter(Boolean))];
   await mkdir(join(outputDir,'assets','list'),{recursive:true});
