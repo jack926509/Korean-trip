@@ -33,6 +33,7 @@ test('輸出完整的行程、餐廳與購物商品', async () => {
   assert.equal((itinerary.match(/data-day-tab/g) || []).length, 7);
   assert.equal((food.match(/id="food-\d{3}"/g) || []).length, 23);
   assert.equal((food.match(/參考截圖/g) || []).length, 6);
+  assert.doesNotMatch(food, /<span class="status">(?:待確認|截圖整理)<\/span>/);
   assert.equal((shopping.match(/class="catalog-card product-card"/g) || []).length, 11);
   assert.equal((shopping.match(/參考截圖/g) || []).length, 11);
   assert.doesNotMatch(shopping, /購物清單待補|之後會加入商品/);
