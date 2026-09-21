@@ -1,5 +1,38 @@
 [
-  {"id":"notice-hours","title":"中秋營業仍待確認","content":"餐廳與商店的時間均為原表筆記，尚未逐店向官方查證；未見公告不等於正常營業。","level":"重要","verificationStatus":"待確認","sourceRefs":["src-food-sheet"]},
-  {"id":"notice-info-x","title":"資訊表的 x 記號暫不解讀","content":"原資訊分頁日期星期不符，且 x 的意思未明；網站保留線索，不顯示為已確認公休。","level":"資料提醒","verificationStatus":"待確認","sourceRefs":["src-info-hours"]},
-  {"id":"notice-transport","title":"交通站名與票券待核對","content":"大田抵達站與西大田出發站不可視為同站；航班機場、航班號及時區亦待確認。","level":"交通","verificationStatus":"待確認","sourceRefs":["src-itinerary-sheet"]}
+  {
+    "id": "notice-hours",
+    "title": "中秋營業仍待確認",
+    "content": "餐廳與商店的時間均為原表筆記，尚未逐店向官方查證；未見公告不等於正常營業。",
+    "level": "重要",
+    "verificationStatus": "待確認",
+    "sourceRefs": [
+      "src-food-sheet"
+    ],
+    "publicTitle": "秋夕營業逐店確認",
+    "publicContent": "9/24–9/26 適逢秋夕假期，餐廳、商店、百貨與超市的營業仍須逐店確認；未見公休公告不代表正常營業。"
+  },
+  {
+    "id": "notice-info-x",
+    "title": "資訊表的 x 記號暫不解讀",
+    "content": "原資訊分頁日期星期不符，且 x 的意思未明；網站保留線索，不顯示為已確認公休。",
+    "level": "資料提醒",
+    "verificationStatus": "待確認",
+    "sourceRefs": [
+      "src-info-hours"
+    ],
+    "publicTitle": "假期營業狀態待確認",
+    "publicContent": "部分商店的假期營業尚未確認，出發前請查看各分店公告。"
+  },
+  {
+    "id": "notice-transport",
+    "title": "交通站名與票券待核對",
+    "content": "大田抵達站與西大田出發站不可視為同站；航班機場、航班號及時區亦待確認。",
+    "level": "交通",
+    "verificationStatus": "待確認",
+    "sourceRefs": [
+      "src-itinerary-sheet"
+    ],
+    "publicTitle": "交通站名與票券待核對",
+    "publicContent": "大田抵達站與西大田出發站不可視為同站；航班機場、航班號及時區亦待確認。"
+  }
 ]

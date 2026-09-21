@@ -1,13 +1,199 @@
 [
-  {"id":"item-vt-pdrn-toner","name":"VT PDRN GLOW TONER","brand":"VT","category":"臉部保養","variant":"200 mL","referencePrice":"₩5,000","priceNote":"瓶身標示；截圖整理於 2026/9/19","area":"貼文提及 Daiso","notes":["瓶身品號 1067495。","貼文另提噴瓶搭配，未列為獨立商品。"],"image":"IMG_6204.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6204"]},
-  {"id":"item-sea-grape-pad","name":"海葡萄棉片","brand":"마미케어","category":"臉部保養","variant":"바다포도 스킨팩 · 120 mL","referencePrice":"₩5,000","priceNote":"包裝標示；截圖整理於 2026/9/19","area":"貼文提及 Daiso","notes":[],"image":"IMG_6278.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6278"]},
-  {"id":"item-aestura-atobarrier365","name":"ATOBARRIER365 CREAM PLUS+","brand":"AESTURA","category":"臉部保養","variant":"90 mL","referencePrice":null,"priceNote":null,"area":"貼文提及 Olive Young","notes":["截圖右側白藍軟管為主品項。","左側露出同系列 ESSENCE，未列為獨立商品。"],"image":"IMG_6411.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6411"]},
-  {"id":"item-mamonde-rose-mask","name":"玫瑰液體面膜／rosy hyalon 線索","brand":"Mamonde","category":"臉部保養","variant":"ROSE LIQUID MASK；貼文另提小條裝 6 條","referencePrice":"₩3,000／6 條","priceNote":"貼文標示；截圖整理於 2026/9/19","area":"貼文提及 Daiso","notes":["價格為貼文所述的小條裝。","粉紅瓶身在截圖中未完整顯示。"],"image":"IMG_6411.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6411"]},
-  {"id":"item-celimax-retinal-shot","name":"RETINAL SHOT TIGHTENING BOOSTER","brand":"celimax","category":"臉部保養","variant":"FOR FIRM SKIN · 15 mL","referencePrice":null,"priceNote":null,"area":null,"notes":["依管身 RETINAL SHOT 名稱收錄。"],"image":"IMG_6810.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6810"]},
-  {"id":"item-kerasys-damage-clinic","name":"DAMAGE CLINIC 護髮素","brand":"KERASYS","category":"頭髮保養","variant":"TREATMENT · 250 mL","referencePrice":"₩3,000","priceNote":"標籤標示；截圖整理於 2026/9/19","area":"貼文提及 Daiso","notes":[],"image":"IMG_6849.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6849"]},
-  {"id":"item-ariul-deo-tissue","name":"cooling deo tissue 清涼濕巾","brand":"Ariul","category":"日常清潔","variant":"Clean Cotton · 20 sheets","referencePrice":null,"priceNote":null,"area":null,"notes":["包裝降溫字樣為商品標示。"],"image":"IMG_6119.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6119"]},
-  {"id":"item-interdental-brush","name":"牙籤型牙間刷","brand":null,"category":"口腔清潔","variant":"이쑤시개형 치간칫솔 · 40 入","referencePrice":"₩1,000","priceNote":"包裝標示；截圖整理於 2026/9/19","area":null,"notes":["牙間刷與牙籤雙頭設計，附攜帶盒。"],"image":"IMG_6352.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6352"]},
-  {"id":"item-ottogi-dakhanmari","name":"一隻雞刀削麵泡麵","brand":"Ottogi","category":"食品伴手禮","variant":"오뚜기 닭한마리 칼국수","referencePrice":null,"priceNote":null,"area":"貼文提及樂天超市","notes":["保留包裝圖供現場辨識。"],"image":"IMG_6239.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6239"]},
-  {"id":"item-peacock-chili-powder","name":"細辣椒粉","brand":"PEACOCK","category":"調味料","variant":"고운 고춧가루 · 110 g","referencePrice":null,"priceNote":null,"area":null,"notes":["瓶身標示 100% 국산（韓國產）。"],"image":"IMG_6609.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6609"]},
-  {"id":"item-taylor-melachew","name":"MELACHEW 褪黑素咀嚼軟糖","brand":"Taylor Life","category":"保健類","variant":"2 mg · 20 粒 · 60 g · 藍莓薰衣草口味","referencePrice":"畫面 $7.24／NT$228.92","priceNote":"畫面未明示美元幣別；截圖整理於 2026/9/19","area":null,"notes":["使用及攜入規定未經本清單查核。"],"image":"IMG_6831.PNG","candidateStoreIds":[],"sourceRefs":["src-shot-6831"]}
+  {
+    "id": "item-vt-pdrn-toner",
+    "name": "VT PDRN GLOW TONER",
+    "brand": "VT",
+    "category": "臉部保養",
+    "variant": "200 mL",
+    "referencePrice": "₩5,000",
+    "priceNote": "瓶身標示；截圖整理於 2026/9/19",
+    "purchaseHint": "貼文提及 Daiso",
+    "notes": [
+      "瓶身品號 1067495。",
+      "貼文另提噴瓶搭配，未列為獨立商品。"
+    ],
+    "image": "IMG_6204.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6204"
+    ]
+  },
+  {
+    "id": "item-sea-grape-pad",
+    "name": "海葡萄棉片",
+    "brand": "마미케어",
+    "category": "臉部保養",
+    "variant": "바다포도 스킨팩 · 120 mL",
+    "referencePrice": "₩5,000",
+    "priceNote": "包裝標示；截圖整理於 2026/9/19",
+    "purchaseHint": "貼文提及 Daiso",
+    "notes": [],
+    "image": "IMG_6278.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6278"
+    ]
+  },
+  {
+    "id": "item-aestura-atobarrier365",
+    "name": "ATOBARRIER365 CREAM PLUS+",
+    "brand": "AESTURA",
+    "category": "臉部保養",
+    "variant": "90 mL",
+    "referencePrice": null,
+    "priceNote": null,
+    "purchaseHint": "貼文提及 Olive Young",
+    "notes": [
+      "截圖右側白藍軟管為主品項。",
+      "左側露出同系列 ESSENCE，未列為獨立商品。"
+    ],
+    "image": "IMG_6411.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6411"
+    ]
+  },
+  {
+    "id": "item-mamonde-rose-mask",
+    "name": "玫瑰液體面膜／rosy hyalon 線索",
+    "brand": "Mamonde",
+    "category": "臉部保養",
+    "variant": "ROSE LIQUID MASK；貼文另提小條裝 6 條",
+    "referencePrice": "₩3,000／6 條",
+    "priceNote": "貼文標示；截圖整理於 2026/9/19",
+    "purchaseHint": "貼文提及 Daiso",
+    "notes": [
+      "價格為貼文所述的小條裝。",
+      "粉紅瓶身在截圖中未完整顯示。"
+    ],
+    "image": "IMG_6411.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6411"
+    ]
+  },
+  {
+    "id": "item-celimax-retinal-shot",
+    "name": "RETINAL SHOT TIGHTENING BOOSTER",
+    "brand": "celimax",
+    "category": "臉部保養",
+    "variant": "FOR FIRM SKIN · 15 mL",
+    "referencePrice": null,
+    "priceNote": null,
+    "purchaseHint": null,
+    "notes": [
+      "依管身 RETINAL SHOT 名稱收錄。"
+    ],
+    "image": "IMG_6810.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6810"
+    ]
+  },
+  {
+    "id": "item-kerasys-damage-clinic",
+    "name": "DAMAGE CLINIC 護髮素",
+    "brand": "KERASYS",
+    "category": "頭髮保養",
+    "variant": "TREATMENT · 250 mL",
+    "referencePrice": "₩3,000",
+    "priceNote": "標籤標示；截圖整理於 2026/9/19",
+    "purchaseHint": "貼文提及 Daiso",
+    "notes": [],
+    "image": "IMG_6849.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6849"
+    ]
+  },
+  {
+    "id": "item-ariul-deo-tissue",
+    "name": "cooling deo tissue 清涼濕巾",
+    "brand": "Ariul",
+    "category": "日常清潔",
+    "variant": "Clean Cotton · 20 sheets",
+    "referencePrice": null,
+    "priceNote": null,
+    "purchaseHint": null,
+    "notes": [
+      "包裝降溫字樣為商品標示。"
+    ],
+    "image": "IMG_6119.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6119"
+    ]
+  },
+  {
+    "id": "item-interdental-brush",
+    "name": "牙籤型牙間刷",
+    "brand": null,
+    "category": "口腔清潔",
+    "variant": "이쑤시개형 치간칫솔 · 40 入",
+    "referencePrice": "₩1,000",
+    "priceNote": "包裝標示；截圖整理於 2026/9/19",
+    "purchaseHint": null,
+    "notes": [
+      "牙間刷與牙籤雙頭設計，附攜帶盒。"
+    ],
+    "image": "IMG_6352.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6352"
+    ]
+  },
+  {
+    "id": "item-ottogi-dakhanmari",
+    "name": "一隻雞刀削麵泡麵",
+    "brand": "Ottogi",
+    "category": "食品伴手禮",
+    "variant": "오뚜기 닭한마리 칼국수",
+    "referencePrice": null,
+    "priceNote": null,
+    "purchaseHint": "貼文提及樂天超市",
+    "notes": [
+      "保留包裝圖供現場辨識。"
+    ],
+    "image": "IMG_6239.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6239"
+    ]
+  },
+  {
+    "id": "item-peacock-chili-powder",
+    "name": "細辣椒粉",
+    "brand": "PEACOCK",
+    "category": "調味料",
+    "variant": "고운 고춧가루 · 110 g",
+    "referencePrice": null,
+    "priceNote": null,
+    "purchaseHint": null,
+    "notes": [
+      "瓶身標示 100% 국산（韓國產）。"
+    ],
+    "image": "IMG_6609.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6609"
+    ]
+  },
+  {
+    "id": "item-taylor-melachew",
+    "name": "MELACHEW 褪黑素咀嚼軟糖",
+    "brand": "Taylor Life",
+    "category": "保健類",
+    "variant": "2 mg · 20 粒 · 60 g · 藍莓薰衣草口味",
+    "referencePrice": "畫面 $7.24／NT$228.92",
+    "priceNote": "畫面未明示美元幣別；截圖整理於 2026/9/19",
+    "purchaseHint": null,
+    "notes": [
+      "使用及攜入規定未經本清單查核。"
+    ],
+    "image": "IMG_6831.PNG",
+    "candidateStoreIds": [],
+    "sourceRefs": [
+      "src-shot-6831"
+    ]
+  }
 ]

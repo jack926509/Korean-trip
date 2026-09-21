@@ -42,7 +42,25 @@ export function validateData(data) {
       if (event.transportId && !idSets.transport.has(event.transportId)) errors.push(`${day.id}/${event.id}: 找不到交通 ${event.transportId}`);
     }
   }
-  for (const item of data.restaurants) if (!item.nameZh || !item.rawName || !item.rawHours || !item.verificationStatus) errors.push(`${item.id}: 餐廳缺少必要或原始欄位`);
+  // 餐廳分兩種來源：行程表整理的必須保留原始營業時間，截圖整理的可以沒有時間資料。
+  const recordTypes = new Set(['行程表', '截圖']);
+  const directions = new Set(['東', '西', '南', '北', '中']);
+  for (const item of data.restaurants) {
+    if (!item.nameZh || !item.rawName || !item.verificationStatus) errors.push(`${item.id}: 餐廳缺少必要或原始欄位`);
+    if (!recordTypes.has(item.recordType)) errors.push(`${item.id}: recordType 必須是行程表或截圖`);
+    if (item.recordType === '行程表' && !item.rawHours) errors.push(`${item.id}: 行程表餐廳必須保留原始營業時間`);
+    if (item.recordType === '截圖' && !item.image) errors.push(`${item.id}: 截圖餐廳必須保留原圖檔名`);
+    if (item.direction !== null && !directions.has(item.direction)) errors.push(`${item.id}: direction 只能是東西南北中或 null`);
+    if (!Array.isArray(item.publicNotes)) errors.push(`${item.id}: publicNotes 必須是陣列`);
+  }
+
+  // 公開頁面顯示的文案一律來自資料檔，缺欄位就不該建置出去。
+  for (const day of data.days) for (const event of day.events) {
+    if (typeof event.publicNote !== 'string' || !event.publicNote) errors.push(`${day.id}/${event.id}: 缺少 publicNote`);
+  }
+  for (const stay of data.stays) if (!stay.publicNote) errors.push(`${stay.id}: 缺少 publicNote`);
+  for (const store of data.stores) if (!store.publicNote) errors.push(`${store.id}: 缺少 publicNote`);
+  for (const notice of data.notices) if (!notice.publicTitle || !notice.publicContent) errors.push(`${notice.id}: 缺少公開標題或內容`);
   for (const item of data.travelUpdates) {
     if (!item.title || !item.summary || !item.status || !item.checkedAt || !item.links?.length) errors.push(`${item.id}: 旅遊摘要缺少必要欄位`);
     for (const link of item.links || []) if (!/^https:\/\//.test(link.url)) errors.push(`${item.id}: 官方旅遊資訊必須使用 HTTPS`);
@@ -56,7 +74,8 @@ export function validateData(data) {
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  const errors = validateData(await loadData());
+  const data = await loadData();
+  const errors = validateData(data);
   if (errors.length) { console.error(errors.join('\n')); process.exitCode = 1; }
-  else console.log('資料驗證通過：7 天行程、23 筆美食、11 項購物與全部關聯有效。');
+  else console.log(`資料驗證通過：${data.days.length} 天行程、${data.restaurants.length} 筆美食、${data.shoppingItems.length} 項購物與全部關聯有效。`);
 }

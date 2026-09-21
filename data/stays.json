@@ -1,4 +1,30 @@
 [
-  {"id":"stay-ara","name":"ARA Hotel","city":"首爾","dates":["2026-09-24"],"note":"原表只在 9/24 記載，不推定其他住宿夜。","status":"暫定","sourceRefs":["src-itinerary-0924"]},
-  {"id":"stay-jeonju-hanok","name":"全州韓屋住宿","city":"全州","dates":["2026-09-27"],"note":"住宿名稱與地址待補；不等同已排入韓屋村觀光。","status":"暫定","sourceRefs":["src-itinerary-0927"]}
+  {
+    "id": "stay-ara",
+    "name": "ARA Hotel",
+    "city": "首爾",
+    "dates": [
+      "2026-09-24"
+    ],
+    "note": "原表只在 9/24 記載，不推定其他住宿夜。",
+    "status": "暫定",
+    "sourceRefs": [
+      "src-itinerary-0924"
+    ],
+    "publicNote": "9/24 住宿列為 ARA Hotel，其餘首爾住宿日期待補。"
+  },
+  {
+    "id": "stay-jeonju-hanok",
+    "name": "全州韓屋住宿",
+    "city": "全州",
+    "dates": [
+      "2026-09-27"
+    ],
+    "note": "住宿名稱與地址待補；不等同已排入韓屋村觀光。",
+    "status": "暫定",
+    "sourceRefs": [
+      "src-itinerary-0927"
+    ],
+    "publicNote": "住宿名稱與地址待補；目前不代表已安排韓屋村觀光。"
+  }
 ]
